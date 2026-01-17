@@ -16,7 +16,7 @@ let app = express()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin:["http://localhost:5173","https://learning-management-system-6d3763.netlify.app/"],
     credentials:true
 }))
 app.use("/api/auth", authRouter)
