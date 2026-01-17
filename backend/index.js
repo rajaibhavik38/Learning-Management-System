@@ -19,7 +19,6 @@ app.use(cors({
     origin:["http://localhost:5173","https://learning-management-system-6d3763.netlify.app/"],
     credentials:true
 }))
-app.use(express.static(path.join(__dirname, 'public')));
 app.use("/api/auth", authRouter)
 app.use("/api/user", userRouter)
 app.use("/api/course", courseRouter)
