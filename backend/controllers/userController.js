@@ -1,8 +1,10 @@
 import uploadOnCloudinary from "../configs/cloudinary.js";
+import connectDb from "../configs/db.js";
 import User from "../models/userModel.js";
 
 export const getCurrentUser = async (req,res) => {
     try {
+        await connectDb();
         const user = await User.findById(req.userId).select("-password").populate("enrolledCourses")
          if(!user){
             return res.status(400).json({message:"user does not found"})
@@ -16,6 +18,7 @@ export const getCurrentUser = async (req,res) => {
 
 export const UpdateProfile = async (req,res) => {
     try {
+        await connectDb();
         const userId = req.userId
         const {name , description} = req.body
         let photoUrl

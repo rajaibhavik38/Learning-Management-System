@@ -1,9 +1,10 @@
 import Review from "../models/reviewModel.js";
 import Course from "../models/courseModel.js";
+import connectDb from "../configs/db.js";
 
 export const addReview = async (req, res) => {
   try {
-    
+    await connectDb();
     const { rating, comment ,courseId} = req.body;
     const userId = req.userId; 
     // Check if course exists
@@ -35,6 +36,7 @@ export const addReview = async (req, res) => {
 
 export const getCourseReviews = async (req, res) => {
   try {
+    await connectDb();
     const { courseId } = req.params;
     const reviews = await Review.find({ course: courseId })
     return res.status(200).json(reviews);
@@ -46,6 +48,7 @@ export const getCourseReviews = async (req, res) => {
 
 export const getAllReviews = async (req, res) => {
   try {
+    await connectDb();
     const reviews = await Review.find({})
       .populate("user", "name photoUrl role") // Populate user name & photo
       .sort({ reviewedAt: -1 }); // Optional: latest first

@@ -2,6 +2,7 @@ import Course from "../models/courseModel.js";
 import razorpay from 'razorpay'
 import User from "../models/userModel.js";
 import dotenv from "dotenv"
+import connectDb from "../configs/db.js";
 dotenv.config()
 const razorpayInstance = new razorpay({
     key_id: process.env.RAZORPAY_KEY_ID,
@@ -10,6 +11,7 @@ const razorpayInstance = new razorpay({
 
 export const createOrder = async (req, res) => {
   try {
+    await connectDb();
     const { courseId } = req.body;
 
     const course = await Course.findById(courseId);
@@ -34,7 +36,7 @@ export const createOrder = async (req, res) => {
 
 export const verifyPayment = async (req, res) => {
   try {
-    
+        await connectDb();
         const {razorpay_order_id , courseId , userId} = req.body
         const orderInfo = await razorpayInstance.orders.fetch(razorpay_order_id)
         if(orderInfo.status === 'paid') {

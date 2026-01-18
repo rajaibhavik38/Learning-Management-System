@@ -1,4 +1,5 @@
 import uploadOnCloudinary from "../configs/cloudinary.js"
+import connectDb from "../configs/db.js"
 import Course from "../models/courseModel.js"
 import Lecture from "../models/lectureModel.js"
 import User from "../models/userModel.js"
@@ -7,6 +8,7 @@ import User from "../models/userModel.js"
 export const createCourse = async (req,res) => {
 
     try {
+        await connectDb();
         const {title,category} = req.body
         if(!title || !category){
             return res.status(400).json({message:"title and category is required"})
@@ -26,6 +28,7 @@ export const createCourse = async (req,res) => {
 
 export const getPublishedCourses = async (req,res) => {
     try {
+        await connectDb();
         const courses = await Course.find({isPublished:true}).populate("lectures reviews")
         if(!courses)
         {
@@ -42,6 +45,7 @@ export const getPublishedCourses = async (req,res) => {
 
 export const getCreatorCourses = async (req,res) => {
     try {
+        await connectDb();
         const userId = req.userId
         const courses = await Course.find({creator:userId})
         if(!courses)
@@ -57,6 +61,7 @@ export const getCreatorCourses = async (req,res) => {
 
 export const editCourse = async (req,res) => {
     try {
+        await connectDb();
         const {courseId} = req.params;
         const {title , subTitle , description , category , level , price , isPublished } = req.body;
         let thumbnail
@@ -79,6 +84,7 @@ export const editCourse = async (req,res) => {
 
 export const getCourseById = async (req,res) => {
     try {
+        await connectDb();
         const {courseId} = req.params
         let course = await Course.findById(courseId)
         if(!course){
@@ -92,6 +98,7 @@ export const getCourseById = async (req,res) => {
 }
 export const removeCourse = async (req, res) => {
   try {
+    await connectDb();
     const courseId = req.params.courseId;
     const course = await Course.findById(courseId);
     
@@ -113,6 +120,7 @@ export const removeCourse = async (req, res) => {
 
 export const createLecture = async (req,res) => {
     try {
+        await connectDb();
         const {lectureTitle}= req.body
         const {courseId} = req.params
 
@@ -137,6 +145,7 @@ export const createLecture = async (req,res) => {
 
 export const getCourseLecture = async (req,res) => {
     try {
+        await connectDb();
         const {courseId} = req.params
         const course = await Course.findById(courseId)
         if(!course){
@@ -152,6 +161,7 @@ export const getCourseLecture = async (req,res) => {
 
 export const editLecture = async (req,res) => {
     try {
+        await connectDb();
         const {lectureId} = req.params
         const {isPreviewFree , lectureTitle} = req.body
         const lecture = await Lecture.findById(lectureId)
@@ -178,6 +188,7 @@ export const editLecture = async (req,res) => {
 
 export const removeLecture = async (req,res) => {
     try {
+        await connectDb();
         const {lectureId} = req.params
         const lecture = await Lecture.findByIdAndDelete(lectureId)
         if(!lecture){
@@ -206,6 +217,7 @@ export const removeLecture = async (req,res) => {
 
 export const getCreatorById = async (req, res) => {
   try {
+    await connectDb();
     const {userId} = req.body;
 
     const user = await User.findById(userId).select("-password"); // Exclude password

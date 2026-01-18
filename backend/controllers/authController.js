@@ -5,12 +5,13 @@ import bcrypt from "bcryptjs"
 import User from "../models/userModel.js"
 
 import sendMail from "../configs/Mail.js"
+import connectDb from "../configs/db.js"
 
 
 export const signUp=async (req,res)=>{
  
     try {
-
+        await connectDb();
         let {name,email,password,role}= req.body
         let existUser= await User.findOne({email})
         if(existUser){
@@ -48,6 +49,7 @@ export const signUp=async (req,res)=>{
 
 export const login=async(req,res)=>{
     try {
+        await connectDb();
         let {email,password}= req.body
         let user= await User.findOne({email})
         if(!user){
@@ -77,6 +79,7 @@ export const login=async(req,res)=>{
 
 export const logOut = async(req,res)=>{
     try {
+        await connectDb();
         await res.clearCookie("token")
         return res.status(200).json({message:"logOut Successfully"})
     } catch (error) {
