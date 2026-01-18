@@ -5,7 +5,7 @@ import { FaEdit } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { serverUrl } from '../../App';
+//import { serverUrl } from '../../App';
 import { toast } from 'react-toastify';
 import { setCreatorCourseData } from '../../redux/courseSlice';
 import img1 from "../../assets/empty.jpg"
@@ -16,7 +16,7 @@ function Courses() {
   let dispatch = useDispatch()
 
   const { creatorCourseData } = useSelector(state => state.course)
-
+  const serverUrl = import.meta.env.VITE_SERVER_URL;
   useEffect(() => {
     const getCreatorData = async () => {
       try {

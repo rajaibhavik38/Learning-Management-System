@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { serverUrl } from '../App.jsx';
+//import { serverUrl } from '../App.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCourseData } from '../redux/courseSlice.js';
 import { useEffect } from 'react';
@@ -8,7 +8,7 @@ import React from 'react'
 const getCouseData = () => {
   const dispatch = useDispatch()
   const {userData} = useSelector((state)=>state.user)
-
+  const serverUrl = import.meta.env.VITE_SERVER_URL;
   useEffect(()=>{
     const getAllPublishedCourse = async () => {
       try {

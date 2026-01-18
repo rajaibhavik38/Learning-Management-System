@@ -3,7 +3,7 @@ import ai from "../assets/ai.png"
 import ai1 from "../assets/SearchAi.png"
 import { RiMicAiFill } from "react-icons/ri";
 import axios from 'axios';
-import { serverUrl } from '../App';
+//import { serverUrl } from '../App';
 import { useNavigate } from 'react-router-dom';
 import start from "../assets/start.mp3"
 import { FaArrowLeftLong } from "react-icons/fa6";
@@ -13,6 +13,7 @@ function SearchWithAi() {
   const [listening,setListening] = useState(false)
   const navigate = useNavigate();
   const startSound = new Audio(start)
+  const serverUrl = import.meta.env.VITE_SERVER_URL;
   function speak(message) {
     let utterance = new SpeechSynthesisUtterance(message);
     window.speechSynthesis.speak(utterance);

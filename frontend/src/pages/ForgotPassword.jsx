@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ClipLoader } from 'react-spinners'
-import { serverUrl } from '../App'
+//import { serverUrl } from '../App'
 import { toast } from 'react-toastify'
 
 function ForgotPassword() {
@@ -13,7 +13,7 @@ function ForgotPassword() {
     const [loading,setLoading]= useState(false)
     const [newpassword,setNewPassword]= useState("")
     const [conPassword,setConpassword]= useState("")
-
+    const serverUrl = import.meta.env.VITE_SERVER_URL;
    const handleStep1 = async () => {
     setLoading(true)
     try {

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import logo from '../assets/logo.jpg'
 import google from '../assets/google.jpg'
 import axios from 'axios'
-import { serverUrl } from '../App'
+//import { serverUrl } from '../App'
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 
 import { MdRemoveRedEye } from "react-icons/md";
@@ -21,6 +21,7 @@ function Login() {
     let [show,setShow] = useState(false)
      const [loading,setLoading]= useState(false)
      let dispatch = useDispatch()
+     const serverUrl = import.meta.env.VITE_SERVER_URL;
     const handleLogin = async () => {
         setLoading(true)
         try {

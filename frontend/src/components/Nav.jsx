@@ -5,7 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { GiSplitCross } from "react-icons/gi";
 
 import { useNavigate } from 'react-router-dom';
-import { serverUrl } from '../App';
+//import { serverUrl } from '../App';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,7 +16,7 @@ function Nav() {
   let navigate = useNavigate()
   let dispatch = useDispatch()
   let {userData} = useSelector(state=>state.user)
-
+  const serverUrl = import.meta.env.VITE_SERVER_URL;
   const handleLogout = async () => {
     try {
       const result = await axios.get(serverUrl + "/api/auth/logout" , {withCredentials:true})

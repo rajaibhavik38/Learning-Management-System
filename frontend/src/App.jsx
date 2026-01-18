@@ -26,7 +26,8 @@ import ViewLecture from './pages/ViewLecture'
 import SearchWithAi from './pages/SearchWithAi'
 import getAllReviews from './customHooks/getAllReviews'
 
-export const serverUrl = "http://localhost:8000"
+//export const serverUrl = "http://localhost:8000"
+// https://learning-management-system-mocha-six.vercel.app    this domain we get from vercel live hosting
 
 function App() {
   

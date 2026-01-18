@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { serverUrl } from '../App'
+//import { serverUrl } from '../App'
 import { setUserData } from '../redux/userSlice'
 import { toast } from 'react-toastify'
 import { ClipLoader } from 'react-spinners'
@@ -16,7 +16,7 @@ function EditProfile() {
      let dispatch = useDispatch()
      let [loading,setLoading] = useState(false)
      let navigate = useNavigate()
-
+      const serverUrl = import.meta.env.VITE_SERVER_URL;
       const formData = new FormData()
       formData.append("name",name)
       formData.append("description",description)

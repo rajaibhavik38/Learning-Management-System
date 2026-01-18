@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { serverUrl } from '../App'
+//import { serverUrl } from '../App'
 import { setAllReview } from '../redux/reviewSlice'
 import axios from 'axios'
 
 const getAllReviews = () => {
 
    const dispatch = useDispatch()
-  
-
+   const serverUrl = import.meta.env.VITE_SERVER_URL;
   useEffect(()=>{
     const getAllReviews = async () => {
       try {

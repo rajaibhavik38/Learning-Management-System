@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { serverUrl } from '../App'
+//import { serverUrl } from '../App'
 import axios from 'axios'
 import { setCreatorCourseData } from '../redux/courseSlice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,6 +8,7 @@ import { toast } from 'react-toastify'
 const getCreatorCourseData = () => {
     const dispatch = useDispatch()
     const {userData} = useSelector(state=>state.user)
+    const serverUrl = import.meta.env.VITE_SERVER_URL;
   return (
     useEffect(()=>{
     const getCreatorData = async () => {

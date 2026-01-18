@@ -1,11 +1,11 @@
 import { useEffect } from "react"
-import { serverUrl } from "../App"
+//import { serverUrl } from "../App"
 import axios from "axios"
 import { useDispatch, useSelector } from "react-redux"
 import { setUserData } from "../redux/userSlice"
 const getCurrentUser = ()=>{
     let dispatch = useDispatch()
-   
+    const serverUrl = import.meta.env.VITE_SERVER_URL;
     useEffect(()=>{
         const fetchUser = async () => {
             try {
